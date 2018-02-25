@@ -1,0 +1,48 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "us-east-1",
+        "profile_name": "axiomio",
+        "project_name": "saasadmin",
+        "runtime": "python3.6",
+        "s3_bucket": "testing-pdb-v1-api",
+      },
+      "dev_daily_event": {
+          "keep_warm": false,
+          "aws_region": "us-east-1",
+          "profile_name": "axiomio",
+          "project_name": "saasadmin-event",
+          "runtime": "python3.6",
+          "s3_bucket": "testing-pdb-v1-api",
+          "debug": true,
+          "log_level": "DEBUG",
+          "events": [{
+              "function": "daily.createAccountUsageRecords",
+              "expression": "cron(0 10 * * ? *)"
+                    }],
+         "use_apigateway": false,
+         "parameter_depth": 1,
+         "timeout_seconds": 300,
+         "memory_size": 128,
+         "use_precompiled_packages": true
+       },
+       "dev_daily_event": {
+           "keep_warm": false,
+           "aws_region": "us-east-1",
+           "profile_name": "axiomio",
+           "project_name": "saasadmin-event",
+           "runtime": "python3.6",
+           "s3_bucket": "testing-pdb-v1-api",
+           "debug": true,
+           "log_level": "DEBUG",
+           "events": [{
+               "function": "monthly.createAccountBillingRecords",
+               "expression": "cron(0 10 1 * ? *)"
+                     }],
+          "use_apigateway": false,
+          "parameter_depth": 1,
+          "timeout_seconds": 300,
+          "memory_size": 128,
+          "use_precompiled_packages": true
+              }
+}

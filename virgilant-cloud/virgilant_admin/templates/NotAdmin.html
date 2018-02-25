@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Virgilant Not Admin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#Logo" onclick="redirectHome()">Virgilant</a>
+    </div>
+
+  </div>
+</nav>
+
+ <div class="panel panel-default">
+
+   <div class="container">
+     <div class="jumbotron">
+       <h1>You are redirected to this page as you are not admin!!</h1>
+
+     </div>
+
+   </div>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+
+      <div class="panel-body">
+			<div class="container">
+			  <table class="table table-hover table-condensed f11 table-nowrap">
+			    <thead>
+			      <tr>
+			        <th>Claims</th>
+			        <th>Value</th>
+            </tr>
+			    </thead>
+			    <tbody>
+			        {% for c in claims %}
+                <tr>
+                  <td>{{ c['claim'] }}</td>
+                  <td>{{ c['claim_value'] }}</td>
+                </tr>
+           {% endfor %}
+          </tbody>
+			  </table>
+			</div>
+
+      </div>
+
+
+  </div>
+</div>
+
+
+</body>
+</html>

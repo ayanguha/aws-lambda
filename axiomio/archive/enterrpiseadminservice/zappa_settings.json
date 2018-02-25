@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "us-east-2",
+        "profile_name": "axiomio",
+        "project_name": "enterrpiseadmin",
+        "runtime": "python3.6",
+        "s3_bucket": "lambda-v1-api"
+    }
+}

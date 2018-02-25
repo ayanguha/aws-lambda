@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "us-east-1",
+        "profile_name": "axiomio",
+        "project_name": "saasadmin",
+        "runtime": "python3.6",
+        "s3_bucket": "testing-pdb-v1-api",
+           }
+}

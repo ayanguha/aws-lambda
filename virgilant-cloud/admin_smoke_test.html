@@ -1,0 +1,4123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Virgilant Smoke test</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 80%;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>Virgilant Smoke test</h1>
+<p class='attribute'><strong>Start Time:</strong> 2018-01-13 23:31:48</p>
+<p class='attribute'><strong>Duration:</strong> 0:01:26.597467</p>
+<p class='attribute'><strong>Status:</strong> Pass 87</p>
+
+<p class='description'>Virgilant Backend API Smoke Testing </p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>AuthTestCase</td>
+    <td>42</td>
+    <td>42</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',42)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/legal/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"ReleasedDate": "01 January, 2018", "postedOn": "2018-01-03T07:29:03.000000Z", "id": 42, "isActive": true, "LegalText": "NI HAO\n\nThis End User License Agreement (EULA) should apply only to the software supplied by mySmartHealthcare\u00ae (products of mySmartSimulations, Inc.) thru products such as online academy, clinical vr\u2122, clinical tvr\u2122 (products of mySmartSimulations\u00ae, Inc.) herewith regardless of whether other software is referred to or described herein. This agreement a...(truncated)
+
+    Expected Status Code: 200 OR 404, Actual Status Code: 200
+    Elapsed Time: 789.835 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 70
+       URL:     https://admin.virgilant.com/admin/legal/
+       Data:    {"ReleasedDate": "2017-12-16T13:47:54.853Z", "LegalText": "Smoketest"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Legal Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 405.924 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/legal/152
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"ReleasedDate": "16 December, 2017", "postedOn": "2018-01-13T12:31:56.000000Z", "id": 152, "isActive": true, "LegalText": "Smoketest"}
+
+
+    Expected Status Code: 200 OR 404, Actual Status Code: 200
+    Elapsed Time: 398.197 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        pass</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.4: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 77
+       URL:     https://admin.virgilant.com/admin/legal/152
+       Data:    {"ReleasedDate": "2017-12-16T12:21:31.594Z", "LegalText": "Smoketest Modify"}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 367.459 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/legal/152
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 372.283 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        pass</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.6: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tutorial/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/star_trails.mp4", "postedOn": "2018-01-13T11:08:26.000000Z", "TutorialDescription": "Smoketest Modify", "TutorialTitle": "Smoketest", "ReleasedDate": "16 December, 2017", "id": 83, "isActive": true}, {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/Upwork_Julo_Hadoop_Installation_v2.3.pdf", "postedOn": "2018-01-12T07:22:55.000000Z", "TutorialDescription": "vcc v", "TutorialTitle": "test"...(truncated)
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 817.926 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md
+https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 186
+       URL:     https://admin.virgilant.com/admin/tutorial/
+       Data:    {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md", "TutorialTitle": "Smoketest", "TutorialDescription": "Smoketest", "ReleasedDate": "2017-12-16"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Tutorial Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 321.234 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tutorial/86
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md", "postedOn": "2018-01-13T12:32:01.000000Z", "TutorialDescription": "Smoketest", "TutorialTitle": "Smoketest", "ReleasedDate": "16 December, 2017", "id": 86, "isActive": true}
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 368.706 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: [{u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md', u'postedOn': u'2018-01-13T12:32:01.000000Z', u'TutorialDescription': u'Smoketest', u'TutorialTitle': u'Smoketest', u'ReleasedDate': u'16 December, 2017', u'id': 86, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/star_trails.mp4', u'postedOn': u'2018-01-13T11:08:26.000000Z', u'TutorialDescription': u'Smoketest Modify', u'TutorialTitle': u'Smoketest', u'ReleasedDate': u'16 December, 2017', u'id': 83, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/Upwork_Julo_Hadoop_Installation_v2.3.pdf', u'postedOn': u'2018-01-12T07:22:55.000000Z', u'TutorialDescription': u'vcc v', u'TutorialTitle': u'test', u'ReleasedDate': u'10 February, 2018', u'id': 78, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/Upwork_Julo_Hadoop_Installation_v2.1.pdf', u'postedOn': u'2018-01-12T07:21:26.000000Z', u'TutorialDescription': u'jnn', u'TutorialTitle': u'testn ', u'ReleasedDate': u'10 February, 2018', u'id': 77, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/sbt-0.13.13.tgz', u'postedOn': u'2018-01-12T07:20:29.000000Z', u'TutorialDescription': u'nb', u'TutorialTitle': u'test', u'ReleasedDate': u'10 February, 2018', u'id': 76, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/SampleVideo_1280x720_1mb.mp4', u'postedOn': u'2018-01-12T02:49:31.000000Z', u'TutorialDescription': u'test', u'TutorialTitle': u'test', u'ReleasedDate': u'04 January, 2018', u'id': 67, u'isActive': True}]
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 207
+       URL:     https://admin.virgilant.com/admin/tutorial/86
+       Data:    {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md", "TutorialTitle": "Smoketest", "TutorialDescription": "Smoketest Modify", "ReleasedDate": "2017-12-16T13:47:54.854Z"}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 393.701 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        pass</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.10: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tutorial/86
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 621.933 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/firmware/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"postedOn": "2018-01-13T12:29:19.000000Z", "CompatibleDevice": ["eTracker"], "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/small.mp4", "ReleasedDate": "10 February, 2018", "id": 116, "isActive": true}]
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 366.826 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        pass</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.12: https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md
+https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 149
+       URL:     https://admin.virgilant.com/admin/firmware/
+       Data:    {"CompatibleDevice": ["string"], "ReleasedDate": "2017-12-16", "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Firmware Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 344.422 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        pass</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.13: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/firmware/117
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"postedOn": "2018-01-13T12:32:06.000000Z", "CompatibleDevice": ["string"], "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md", "ReleasedDate": "16 December, 2017", "id": 117, "isActive": true}
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 368.509 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        pass</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.14: https://admin.virgilant.com/admin/firmware/117
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 163
+       URL:     https://admin.virgilant.com/admin/firmware/117
+       Data:    {"CompatibleDevice": ["string"], "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md", "ReleasedDate": "2017-12-16T13:47:54.852Z"}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 399.78 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/firmware/117
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 1116.734 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tipsnews/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"TipsNewsDescription": "data", "TipsNewsHyperink": "http://www.mysmarthealthcare.com/eula.html", "TipsNewsType": "Tips", "isActive": true, "ReleasedDate": "11 January, 2018", "postedOn": "2018-01-11T15:11:23.000000Z", "id": 121, "TipsNewsTitle": "Some Tips"}, {"TipsNewsDescription": "\nSome Tips", "TipsNewsHyperink": "http://www.mysmarthealthcare.com/eula.html", "TipsNewsType": "Tips", "isActive": true, "ReleasedDate": "08 February, 2018", "postedOn": "2018-01-11T12:01:21.000000Z", "id": 99, "...(truncated)
+
+    Expected Status Code: 204, Actual Status Code: 200
+    Elapsed Time: 453.677 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 172
+       URL:     https://admin.virgilant.com/admin/tipsnews/
+       Data:    {"TipsNewsDescription": "Smoketest", "TipsNewsHyperink": "Smoketest", "TipsNewsType": "Smoketest", "TipsNewsTitle": "Smoketest", "ReleasedDate": "2017-12-16T13:47:54.853Z"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Tips/News Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 411.879 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        pass</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.18: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tipsnews/141
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"TipsNewsDescription": "Smoketest", "TipsNewsHyperink": "Smoketest", "TipsNewsType": "Smoketest", "isActive": true, "ReleasedDate": "16 December, 2017", "postedOn": "2018-01-13T12:32:10.000000Z", "id": 141, "TipsNewsTitle": "Smoketest"}
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 376.476 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.19')" >
+        pass</a>
+
+    <div id='div_pt1.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.19: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/tipsnews/141
+       Data:    {}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 445.655 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.20')" >
+        pass</a>
+
+    <div id='div_pt1.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.20: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tipsnews/141
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 401.83 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_base</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.21')" >
+        pass</a>
+
+    <div id='div_pt1.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.21: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  &lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;Virgilant Login&lt;/title&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jq...(truncated)
+
+    Expected Status Code: 200 OR 404, Actual Status Code: 200
+    Elapsed Time: 364.032 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        pass</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.22: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/legal/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"ReleasedDate": "01 January, 2018", "postedOn": "2018-01-03T07:29:03.000000Z", "id": 42, "isActive": true, "LegalText": "NI HAO\n\nThis End User License Agreement (EULA) should apply only to the software supplied by mySmartHealthcare\u00ae (products of mySmartSimulations, Inc.) thru products such as online academy, clinical vr\u2122, clinical tvr\u2122 (products of mySmartSimulations\u00ae, Inc.) herewith regardless of whether other software is referred to or described herein. This agreement a...(truncated)
+
+    Expected Status Code: 200 OR 404, Actual Status Code: 200
+    Elapsed Time: 541.197 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        pass</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.23: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 70
+       URL:     https://admin.virgilant.com/admin/legal/
+       Data:    {"ReleasedDate": "2017-12-16T13:47:54.853Z", "LegalText": "Smoketest"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Legal Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 412.173 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        pass</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.24: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/legal/153
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"ReleasedDate": "16 December, 2017", "postedOn": "2018-01-13T12:32:34.000000Z", "id": 153, "isActive": true, "LegalText": "Smoketest"}
+
+
+    Expected Status Code: 200 OR 404, Actual Status Code: 200
+    Elapsed Time: 361.657 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.25')" >
+        pass</a>
+
+    <div id='div_pt1.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.25: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 77
+       URL:     https://admin.virgilant.com/admin/legal/153
+       Data:    {"ReleasedDate": "2017-12-16T12:21:31.594Z", "LegalText": "Smoketest Modify"}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 395.883 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Legal_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.26')" >
+        pass</a>
+
+    <div id='div_pt1.26' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.26: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/legal/153
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 492.43 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.27')" >
+        pass</a>
+
+    <div id='div_pt1.27' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.27: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tutorial/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/star_trails.mp4", "postedOn": "2018-01-13T11:08:26.000000Z", "TutorialDescription": "Smoketest Modify", "TutorialTitle": "Smoketest", "ReleasedDate": "16 December, 2017", "id": 83, "isActive": true}, {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/Upwork_Julo_Hadoop_Installation_v2.3.pdf", "postedOn": "2018-01-12T07:22:55.000000Z", "TutorialDescription": "vcc v", "TutorialTitle": "test"...(truncated)
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 337.661 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.28')" >
+        pass</a>
+
+    <div id='div_pt1.28' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.28: https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md
+https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 186
+       URL:     https://admin.virgilant.com/admin/tutorial/
+       Data:    {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md", "TutorialTitle": "Smoketest", "TutorialDescription": "Smoketest", "ReleasedDate": "2017-12-16"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Tutorial Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 310.161 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.29')" >
+        pass</a>
+
+    <div id='div_pt1.29' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.29: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tutorial/87
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md", "postedOn": "2018-01-13T12:32:39.000000Z", "TutorialDescription": "Smoketest", "TutorialTitle": "Smoketest", "ReleasedDate": "16 December, 2017", "id": 87, "isActive": true}
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 314.356 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.30')" >
+        pass</a>
+
+    <div id='div_pt1.30' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.30').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.30: [{u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md', u'postedOn': u'2018-01-13T12:32:39.000000Z', u'TutorialDescription': u'Smoketest', u'TutorialTitle': u'Smoketest', u'ReleasedDate': u'16 December, 2017', u'id': 87, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/star_trails.mp4', u'postedOn': u'2018-01-13T11:08:26.000000Z', u'TutorialDescription': u'Smoketest Modify', u'TutorialTitle': u'Smoketest', u'ReleasedDate': u'16 December, 2017', u'id': 83, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/Upwork_Julo_Hadoop_Installation_v2.3.pdf', u'postedOn': u'2018-01-12T07:22:55.000000Z', u'TutorialDescription': u'vcc v', u'TutorialTitle': u'test', u'ReleasedDate': u'10 February, 2018', u'id': 78, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/Upwork_Julo_Hadoop_Installation_v2.1.pdf', u'postedOn': u'2018-01-12T07:21:26.000000Z', u'TutorialDescription': u'jnn', u'TutorialTitle': u'testn ', u'ReleasedDate': u'10 February, 2018', u'id': 77, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/sbt-0.13.13.tgz', u'postedOn': u'2018-01-12T07:20:29.000000Z', u'TutorialDescription': u'nb', u'TutorialTitle': u'test', u'ReleasedDate': u'10 February, 2018', u'id': 76, u'isActive': True}, {u'TutorialeMedialLink': u'https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/SampleVideo_1280x720_1mb.mp4', u'postedOn': u'2018-01-12T02:49:31.000000Z', u'TutorialDescription': u'test', u'TutorialTitle': u'test', u'ReleasedDate': u'04 January, 2018', u'id': 67, u'isActive': True}]
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 207
+       URL:     https://admin.virgilant.com/admin/tutorial/87
+       Data:    {"TutorialeMedialLink": "https://s3.amazonaws.com/v-lambda-package-v1/Tutorial/README.md", "TutorialTitle": "Smoketest", "TutorialDescription": "Smoketest Modify", "ReleasedDate": "2017-12-16T13:47:54.854Z"}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 480.409 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_Tutorial_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.31')" >
+        pass</a>
+
+    <div id='div_pt1.31' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.31: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tutorial/87
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 1022.396 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.32')" >
+        pass</a>
+
+    <div id='div_pt1.32' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.32').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.32: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/firmware/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"postedOn": "2018-01-13T12:29:19.000000Z", "CompatibleDevice": ["eTracker"], "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/small.mp4", "ReleasedDate": "10 February, 2018", "id": 116, "isActive": true}]
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 388.697 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.33')" >
+        pass</a>
+
+    <div id='div_pt1.33' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.33').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.33: https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md
+https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 149
+       URL:     https://admin.virgilant.com/admin/firmware/
+       Data:    {"CompatibleDevice": ["string"], "ReleasedDate": "2017-12-16", "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Firmware Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 322.851 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.34')" >
+        pass</a>
+
+    <div id='div_pt1.34' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.34').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.34: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/firmware/118
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"postedOn": "2018-01-13T12:32:46.000000Z", "CompatibleDevice": ["string"], "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md", "ReleasedDate": "16 December, 2017", "id": 118, "isActive": true}
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 405.249 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.35' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.35')" >
+        pass</a>
+
+    <div id='div_pt1.35' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.35').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.35: https://admin.virgilant.com/admin/firmware/118
+
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 163
+       URL:     https://admin.virgilant.com/admin/firmware/118
+       Data:    {"CompatibleDevice": ["string"], "FirmwareFileLink": "https://s3.amazonaws.com/v-lambda-package-v1/Firmware/README.md", "ReleasedDate": "2017-12-16T13:47:54.852Z"}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 400.203 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.36' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_firmware_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.36')" >
+        pass</a>
+
+    <div id='div_pt1.36' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.36').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.36: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/firmware/118
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 1316.78 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.37' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.37')" >
+        pass</a>
+
+    <div id='div_pt1.37' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.37').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.37: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tipsnews/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"TipsNewsDescription": "data", "TipsNewsHyperink": "http://www.mysmarthealthcare.com/eula.html", "TipsNewsType": "Tips", "isActive": true, "ReleasedDate": "11 January, 2018", "postedOn": "2018-01-11T15:11:23.000000Z", "id": 121, "TipsNewsTitle": "Some Tips"}, {"TipsNewsDescription": "\nSome Tips", "TipsNewsHyperink": "http://www.mysmarthealthcare.com/eula.html", "TipsNewsType": "Tips", "isActive": true, "ReleasedDate": "08 February, 2018", "postedOn": "2018-01-11T12:01:21.000000Z", "id": 99, "...(truncated)
+
+    Expected Status Code: 204, Actual Status Code: 200
+    Elapsed Time: 367.104 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.38' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.38')" >
+        pass</a>
+
+    <div id='div_pt1.38' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.38').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.38: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 172
+       URL:     https://admin.virgilant.com/admin/tipsnews/
+       Data:    {"TipsNewsDescription": "Smoketest", "TipsNewsHyperink": "Smoketest", "TipsNewsType": "Smoketest", "TipsNewsTitle": "Smoketest", "ReleasedDate": "2017-12-16T13:47:54.853Z"}
+       Method: POST
+
+    Response:
+      Status Code: 201
+      Retrun Msg:  {"result": "sucessfully added Tips/News Record"}
+
+
+    Expected Status Code: 201, Actual Status Code: 201
+    Elapsed Time: 290.71 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.39' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.39')" >
+        pass</a>
+
+    <div id='div_pt1.39' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.39').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.39: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/admin/tipsnews/142
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  {"TipsNewsDescription": "Smoketest", "TipsNewsHyperink": "Smoketest", "TipsNewsType": "Smoketest", "isActive": true, "ReleasedDate": "16 December, 2017", "postedOn": "2018-01-13T12:32:50.000000Z", "id": 142, "TipsNewsTitle": "Smoketest"}
+
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 370.671 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.40' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.40')" >
+        pass</a>
+
+    <div id='div_pt1.40' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.40').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.40: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/tipsnews/142
+       Data:    {}
+       Method: PUT
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 390.112 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.41' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_admin_tipsnews_one_id4</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.41')" >
+        pass</a>
+
+    <div id='div_pt1.41' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.41').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.41: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tipsnews/142
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 204
+      Retrun Msg:  
+
+    Expected Status Code: 204, Actual Status Code: 204
+    Elapsed Time: 472.901 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.42' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_base</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.42')" >
+        pass</a>
+
+    <div id='div_pt1.42' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.42').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.42: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  &lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;Virgilant Login&lt;/title&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jq...(truncated)
+
+    Expected Status Code: 200 OR 404, Actual Status Code: 200
+    Elapsed Time: 300.74 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>UnAuthTestCase</td>
+    <td>23</td>
+    <td>23</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',23)">Detail</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Legal_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        pass</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.1: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/legal
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 262.545 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Legal_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.2')" >
+        pass</a>
+
+    <div id='div_pt2.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.2: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/legal/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 266.789 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Legal_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.3')" >
+        pass</a>
+
+    <div id='div_pt2.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.3: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/legal/1
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 265.546 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Legal_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.4')" >
+        pass</a>
+
+    <div id='div_pt2.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.4: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/legal/1
+       Data:    {}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 275.196 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Legal_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.5')" >
+        pass</a>
+
+    <div id='div_pt2.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.5: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/legal
+       Data:    {}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 269.955 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Tutorial_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.6')" >
+        pass</a>
+
+    <div id='div_pt2.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.6: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/tutorial
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 269.534 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Tutorial_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.7')" >
+        pass</a>
+
+    <div id='div_pt2.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.7: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tutorial/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 280.404 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Tutorial_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.8')" >
+        pass</a>
+
+    <div id='div_pt2.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.8: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/tutorial/1
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 265.793 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Tutorial_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.9')" >
+        pass</a>
+
+    <div id='div_pt2.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.9: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/tutorial/1
+       Data:    {}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 270.059 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_Tutorial_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.10')" >
+        pass</a>
+
+    <div id='div_pt2.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.10: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/tutorial
+       Data:    {}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 269.599 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_firmware_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.11')" >
+        pass</a>
+
+    <div id='div_pt2.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.11: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/firmware
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 255.681 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_firmware_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.12')" >
+        pass</a>
+
+    <div id='div_pt2.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.12: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/firmware/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 268.542 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_firmware_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.13')" >
+        pass</a>
+
+    <div id='div_pt2.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.13: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/firmware/1
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 268.643 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_firmware_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.14')" >
+        pass</a>
+
+    <div id='div_pt2.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.14: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/firmware/1
+       Data:    {}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 281.855 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_firmware_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.15')" >
+        pass</a>
+
+    <div id='div_pt2.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.15: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/firmware
+       Data:    {}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 265.684 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_tipsnews_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.16')" >
+        pass</a>
+
+    <div id='div_pt2.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.16: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/tipsnews
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 262.699 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_tipsnews_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.17')" >
+        pass</a>
+
+    <div id='div_pt2.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.17: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tipsnews/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 259.673 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_tipsnews_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.18')" >
+        pass</a>
+
+    <div id='div_pt2.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.18: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/admin/tipsnews/1
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 267.572 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_tipsnews_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.19')" >
+        pass</a>
+
+    <div id='div_pt2.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.19: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/tipsnews/1
+       Data:    {}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 261.506 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_tipsnews_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.20')" >
+        pass</a>
+
+    <div id='div_pt2.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.20: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/tipsnews
+       Data:    {}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 705.133 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_upload_firmware</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.21')" >
+        pass</a>
+
+    <div id='div_pt2.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.21: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/upload/firmware
+       Data:    {}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 777.464 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_admin_upload_tutorial</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.22')" >
+        pass</a>
+
+    <div id='div_pt2.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.22: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/upload/tutorial
+       Data:    {}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message":"Unauthorized"}
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 714.586 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_UnAuthTestCase_base</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.23')" >
+        pass</a>
+
+    <div id='div_pt2.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.23: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+       URL:     https://admin.virgilant.com/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  &lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;Virgilant Login&lt;/title&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jq...(truncated)
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 399.904 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>NonAdminAuthTestCase</td>
+    <td>20</td>
+    <td>20</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c3',20)">Detail</a></td>
+</tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Legal_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        pass</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.1: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/legal/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 553.895 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Legal_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.2')" >
+        pass</a>
+
+    <div id='div_pt3.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.2: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/legal/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 293.882 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Legal_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.3')" >
+        pass</a>
+
+    <div id='div_pt3.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.3: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/legal/1
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 300.366 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Legal_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.4')" >
+        pass</a>
+
+    <div id='div_pt3.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.4: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 77
+       URL:     https://admin.virgilant.com/admin/legal/1
+       Data:    {"ReleasedDate": "2017-12-16T12:21:31.594Z", "LegalText": "Smoketest Modify"}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 341.471 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Legal_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.5')" >
+        pass</a>
+
+    <div id='div_pt3.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.5: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 70
+       URL:     https://admin.virgilant.com/admin/legal/
+       Data:    {"ReleasedDate": "2017-12-16T13:47:54.853Z", "LegalText": "Smoketest"}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 305.722 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Tutorial_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.6')" >
+        pass</a>
+
+    <div id='div_pt3.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.6: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/tutorial/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 420.43 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Tutorial_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.7')" >
+        pass</a>
+
+    <div id='div_pt3.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.7: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tutorial/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 298.41 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Tutorial_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.8')" >
+        pass</a>
+
+    <div id='div_pt3.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.8: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/tutorial/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 395.745 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Tutorial_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.9')" >
+        pass</a>
+
+    <div id='div_pt3.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.9: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 153
+       URL:     https://admin.virgilant.com/admin/tutorial/1
+       Data:    {"TutorialeMedialLink": "Smoketest", "TutorialTitle": "Smoketest", "TutorialDescription": "Smoketest Modify", "ReleasedDate": "2017-12-16T13:47:54.854Z"}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 407.348 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_Tutorial_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.10')" >
+        pass</a>
+
+    <div id='div_pt3.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.10: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 146
+       URL:     https://admin.virgilant.com/admin/tutorial/
+       Data:    {"TutorialeMedialLink": "Smoketest", "TutorialTitle": "Smoketest", "TutorialDescription": "Smoketest", "ReleasedDate": "2017-12-16T13:47:54.854Z"}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 400.231 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_firmware_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.11')" >
+        pass</a>
+
+    <div id='div_pt3.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.11: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/firmware/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 394.578 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_firmware_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.12')" >
+        pass</a>
+
+    <div id='div_pt3.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.12: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/firmware/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 787.353 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_firmware_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.13')" >
+        pass</a>
+
+    <div id='div_pt3.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.13: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 109
+       URL:     https://admin.virgilant.com/admin/firmware/1
+       Data:    {"CompatibleDevice": ["string"], "FirmwareFileLink": "Smoketest", "ReleasedDate": "2017-12-16T13:47:54.852Z"}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 425.623 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_firmware_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.14')" >
+        pass</a>
+
+    <div id='div_pt3.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.14: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 109
+       URL:     https://admin.virgilant.com/admin/firmware/
+       Data:    {"CompatibleDevice": ["string"], "FirmwareFileLink": "Smoketest", "ReleasedDate": "2017-12-16T13:47:54.852Z"}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 413.175 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_tipsnews_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.15')" >
+        pass</a>
+
+    <div id='div_pt3.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.15: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/tipsnews/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 389.095 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_tipsnews_one_delete</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.16')" >
+        pass</a>
+
+    <div id='div_pt3.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.16: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 0
+       URL:     https://admin.virgilant.com/admin/tipsnews/1
+       Data:    None
+       Method: DELETE
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 402.458 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_tipsnews_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.17')" >
+        pass</a>
+
+    <div id='div_pt3.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.17: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/tipsnews/1
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 340.326 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_tipsnews_one_put</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.18')" >
+        pass</a>
+
+    <div id='div_pt3.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.18: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 172
+       URL:     https://admin.virgilant.com/admin/tipsnews/1
+       Data:    {"TipsNewsDescription": "Smoketest", "TipsNewsHyperink": "Smoketest", "TipsNewsType": "Smoketest", "TipsNewsTitle": "Smoketest", "ReleasedDate": "2017-12-16T13:47:54.853Z"}
+       Method: PUT
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 363.547 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCase_admin_tipsnews_post</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.19')" >
+        pass</a>
+
+    <div id='div_pt3.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.19: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+Content-Length : 2
+       URL:     https://admin.virgilant.com/admin/tipsnews/
+       Data:    {}
+       Method: POST
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 360.714 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_NonAdminAuthTestCaseadmin_firmware_one_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.20')" >
+        pass</a>
+
+    <div id='div_pt3.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.20: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxYzExOWYxZC02NDYxLTQ3NjAtODE3Ny02NjcxZjUxZDliZDciLCJjb2duaXRvOmdyb3VwcyI6WyJBcHBHcm91cCJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvQXBwUm9sZSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1JHV2lmVEh2RSIsImNvZ25pdG86dXNlcm5hbWUiOiJhcHB1c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06Ojk3ODMy...(truncated)
+       URL:     https://admin.virgilant.com/admin/firmware/
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 401
+      Retrun Msg:  {"message": "The server could not verify that you are authorized to access the URL requested.  You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."}
+
+
+    Expected Status Code: 401, Actual Status Code: 401
+    Elapsed Time: 342.319 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>AdminAuthDataTestCase</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c4',2)">Detail</a></td>
+</tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_data_raw_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        pass</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.1: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/data/raw
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"UsageInfo": {"RatioFEV3FVC": "string", "FEV1": "string", "FVC": "string", "FEV3": "string", "FET": "string", "RatioFEV6FVC": "string", "FEF50P": "string", "FEF25P": "string", "PEF": "string", "FlowData": ["string"], "RatioFEV1FVC": "string", "ErrorCode": "string", "FEF75P": "string"}, "AnonId": "909090", "DemographicInfo": {"Prescription": [{"dose": "string", "timesPerDay": "string", "drugName": "string"}], "Weight": "string", "Allergies": ["string"], "Age": "str", "Height": "string", "Gender...(truncated)
+
+    Expected Status Code: 200, Actual Status Code: 200
+    Elapsed Time: 424.437 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_AuthTestCase_data_raw_get_id</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.2')" >
+        pass</a>
+
+    <div id='div_pt4.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.2: 
+     Request attributes:
+       Headers: Connection : keep-alive
+Accept-Encoding : gzip, deflate
+Accept : */*
+User-Agent : python-requests/2.18.4
+Content-Type : application/json
+Authorization : eyJraWQiOiJhUFNLNVNVS0RZbkRjdTVpcGZ2YmJXNjRvR29zT3ZVQjdxRk1EVWJscTlFPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlYTQyZjg1Zi05OTliLTQ0YzYtOGQxNy00NDhlYjE0MDdlZTgiLCJjb2duaXRvOmdyb3VwcyI6WyJBZG1pbiJdLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiY29nbml0bzpwcmVmZXJyZWRfcm9sZSI6ImFybjphd3M6aWFtOjo5NzgzMjcwNzExNjc6cm9sZVwvZGVwbG95bWVudFJvbGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9SR1dpZlRIdkUiLCJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW51c2VyMSIsImNvZ25pdG86cm9sZXMiOlsiYXJuOmF3czppYW06...(truncated)
+       URL:     https://admin.virgilant.com/data/raw/UUID1
+       Data:    None
+       Method: GET
+
+    Response:
+      Status Code: 200
+      Retrun Msg:  [{"UsageInfo": {"RatioFEV3FVC": "string", "FEV1": "string", "FVC": "string", "FEV3": "string", "FET": "string", "RatioFEV6FVC": "string", "FEF50P": "string", "FEF25P": "string", "PEF": "string", "FlowData": ["string"], "RatioFEV1FVC": "string", "ErrorCode": "string", "FEF75P": "string"}, "AnonId": "UUID1", "DemographicInfo": {"Prescription": [{"drugName": "string", "timesPerDay": "string", "dose": "string"}], "Weight": "string", "Allergies": ["string"], "Age": "100", "Height": "string", "Gender"...(truncated)
+
+    Expected Status Code: 200 OR 404, Actual Status Code: 200
+    Elapsed Time: 613.983 ms
+          
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>87</td>
+    <td>87</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

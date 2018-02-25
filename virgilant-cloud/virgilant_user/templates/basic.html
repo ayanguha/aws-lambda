@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.6/css/fileinput.min.css"> -->
+
+
+<!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>
+  <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.6/js/fileinput.min.js"></script>-->
+
+
+
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('#LegalTextReleasedDatePicker').datepicker({
+              format: "yyyy-mm-dd",
+              showButtonPanel: true,
+              autoclose:true,
+              beforeShow:
+                 function(){$("div.ui-datepicker").css('font-size', 12)
+               }
+            });
+
+            $('#UpdLegalTextReleasedDatePicker').datepicker({
+                format: "yyyy-mm-dd",
+                showButtonPanel: true,
+                autoclose:true,
+                beforeShow:
+                   function(){$("div.ui-datepicker").css('font-size', 12)
+                 }
+              });
+
+            $('#TutorialReleasedDatePicker').datepicker({
+                format: "yyyy-mm-dd",
+                showButtonPanel: true,
+                autoclose:true,
+                beforeShow:
+                   function(){$("div.ui-datepicker").css('font-size', 12)
+                 }
+              });
+
+              $('#UpdTutorialReleasedDatePicker').datepicker({
+                  format: "yyyy-mm-dd",
+                  showButtonPanel: true,
+                  autoclose:true,
+                  beforeShow:
+                     function(){$("div.ui-datepicker").css('font-size', 12)
+                   }
+                });
+
+              $('#FirmwareReleasedDatePicker').datepicker({
+                  format: "yyyy-mm-dd",
+                  showButtonPanel: true,
+                  autoclose:true,
+                  beforeShow:
+                     function(){$("div.ui-datepicker").css('font-size', 12)
+                   }
+                });
+
+                $('#UpdFirmwareReleasedDatePicker').datepicker({
+                    format: "yyyy-mm-dd",
+                    showButtonPanel: true,
+                    autoclose:true,
+                    beforeShow:
+                       function(){$("div.ui-datepicker").css('font-size', 12)
+                     }
+                  });
+
+
+$('#newFirmwareReleasedDatePicker').datepicker({
+    format: "yyyy-mm-dd",
+    showButtonPanel: true,
+    autoclose:true,
+    beforeShow:
+       function(){$("div.ui-datepicker").css('font-size', 12)
+     }
+  });
+                $('#TipsNewsReleasedDatePicker').datepicker({
+                    format: "yyyy-mm-dd",
+                    showButtonPanel: true,
+                    autoclose:true,
+                    beforeShow:
+                       function(){$("div.ui-datepicker").css('font-size', 12)
+                     }
+                  });
+
+                  $('#UpdTipsNewsReleasedDatePicker').datepicker({
+                      format: "yyyy-mm-dd",
+                      showButtonPanel: true,
+                      autoclose:true,
+                      beforeShow:
+                         function(){$("div.ui-datepicker").css('font-size', 12)
+                       }
+                    });
+
+            $('#tipsnewsTypeToken').tokenfield({
+                     autocomplete: {
+                           source: ['Tips', 'News'],
+                           delay: 100
+                              }, showAutocompleteOnFocus: true
+               }) ;
+
+               $('#UpddeviceTypeToken').tokenfield({
+                 preventDuplicates: true,
+                autocomplete: {
+                              source: ['eTracker', 'eSpiro'],
+                              delay: 100
+                                 }, showAutocompleteOnFocus: true
+                  }) ;
+
+               $('#deviceTypeToken').tokenfield({
+                        preventDuplicates: true,
+
+                        autocomplete: {
+                              source: ['eTracker', 'eSpiro'],
+                              delay: 100
+                                 }, showAutocompleteOnFocus: true
+                  }) ;
+
+  });
+
+  </script>
+
+<script type="text/javascript">
+
+function redirectHome(){
+
+window.location = "{{ url_for('api.admin_admin_info_handler') }}";
+}
+
+function addLegalRecord() {
+      var data = {"ReleasedDate": $('#LegalTextReleasedDatePicker').val(),
+                  "LegalText": $('#LegalText').val()
+                };
+      var formData = JSON.stringify(data);
+    alert(formData);
+    $.ajax({
+      type: "POST",
+      url: "{{ url_for('api.admin/legal_admin_legal_info_handler') }}",
+      data: formData,
+      contentType: 'application/json',
+      success: function(result) {
+        alert('Legal Data Added');
+              redirectHome();
+               },
+      error: function(result) {alert('error'); redirectHome();}
+    });
+  }
+
+
+
+function setAndOpenLegalModal(id) {
+  var clickable = "{{ url_for('api.admin/legal_admin_one_legal_info_handler',id=0) }}".slice(0,-1).concat(id);
+  var data = {};
+  var formData = JSON.stringify(data);
+
+  $.ajax({
+       type: "GET",
+       url: clickable,
+       data: formData,
+       contentType: 'application/json',
+       dataType: "json",
+       success: function(result) {
+               $("#hiddenValueLegal").val(id);
+               $('#UpdLegalTextReleasedDatePicker').val(result.ReleasedDate);
+               $('#UpdLegalText').val(result.LegalText);
+               $('#LegalModal').modal('show');
+               },
+      error: function(result) {alert('error'); redirectHome();}
+    });
+
+
+}
+
+function updateLegalRecord() {
+  id = $("#hiddenValueLegal").val();
+
+
+  var clickable = "{{ url_for('api.admin/legal_admin_one_legal_info_handler',id=0) }}".slice(0,-1).concat(id);
+
+  var data = {"ReleasedDate": $('#UpdLegalTextReleasedDatePicker').val(),
+              "LegalText": $('#UpdLegalText').val()
+            };
+  var formData = JSON.stringify(data);
+
+
+$.ajax({
+  type: "PUT",
+  url: clickable,
+  data: formData,
+  contentType: 'application/json',
+
+  success: function(result) {
+     alert('Legal Text Updated');
+     redirectHome();
+   },
+  error: function(result) {alert('error'); redirectHome();}
+});
+}
+
+
+  function deleteLegalRecord(id) {
+
+        var c = confirm('Trying to delete Legal Text:' + id);
+        if (c == true) {
+          console.log(id);
+          var clickable = "{{ url_for('api.admin/legal_admin_one_legal_info_handler',id=0) }}".slice(0,-1).concat(id);
+          console.log(clickable);
+          var data = {};
+          var formData = JSON.stringify(data);
+
+          $.ajax({
+               type: "DELETE",
+               url: clickable,
+               data: formData,
+               contentType: 'application/json',
+
+               success: function(result) {
+                       alert('Legal Text Deleted');
+                       redirectHome();
+                       },
+              error: function(result) {alert('error'); redirectHome();}
+            });
+          }
+        else { redirectHome(); }
+    }
+
+    function addTutorialRecord() {
+      var form = document.forms.namedItem("TutorialAddContentForm");
+      var fileForm = new FormData(form);
+          jQuery.ajax({ url: "{{ url_for('api.admin_tutorial_file_upload_handler') }}",
+                      data: fileForm,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      type: 'POST',
+                     success: function(result) {
+                             alert('Tutorial Added');
+                             redirectHome();
+                              },
+                    error: function(result) {alert('error'); redirectHome();
+                  }});
+
+      }
+
+      function setAndOpenTutorialModal(id) {
+        var clickable = "{{ url_for('api.admin/tutorial_admin_one_tutorial_handler',id=0) }}".slice(0,-1).concat(id);
+        var data = {};
+        var formData = JSON.stringify(data);
+
+        $.ajax({
+               type: "GET",
+               url: clickable,
+               data: formData,
+               contentType: 'application/json',
+               dataType: "json",
+               success: function(result) {
+                 $("#hiddenValueTutorial").val(id);
+                 $("#UpdTutorialReleasedDatePicker").val(result.ReleasedDate);
+                 $("#UpdTutorialTitle").val(result.TutorialTitle);
+                 $("#UpdTutorialDescription").val(result.TutorialDescription);
+                 $("#UpdTutorialeMedialLink").val(result.TutorialeMedialLink);
+                 $('#TutorialModal').modal('show');
+                         },
+               error: function(result) {alert('error'); redirectHome();}
+            });
+
+
+      }
+
+      function updateTutorialRecord() {
+        confirm("Updating Tutorial Record 1");
+        id = $("#hiddenValueTutorial").val();
+
+
+        var clickable = "{{ url_for('api.admin/tutorial_admin_one_tutorial_handler',id=0) }}".slice(0,-1).concat(id);
+
+        var data = {"ReleasedDate": $('#UpdTutorialReleasedDatePicker').val(),
+                    "TutorialTitle": $('#UpdTutorialTitle').val(),
+                    "TutorialDescription": $('#UpdTutorialDescription').val(),
+                    "TutorialeMedialLink": $('#UpdTutorialeMedialLink').val()
+                  };
+        var formData = JSON.stringify(data);
+
+      $.ajax({
+        type: "PUT",
+        url: clickable,
+        data: formData,
+        contentType: 'application/json',
+        success: function(result) {
+           alert('Tutorial Updated');
+           redirectHome();
+         },
+        error: function(result) {alert('error'); redirectHome();}
+      });
+      }
+
+      function deleteTutorialRecord(id) {
+            var c = confirm('Trying to delete Tutorial:' + id);
+            if ( c == true) {
+              console.log(id);
+              var clickable = "{{ url_for('api.admin/tutorial_admin_one_tutorial_handler',id=0) }}".slice(0,-1).concat(id);
+              console.log(clickable);
+              var data = {};
+              var formData = JSON.stringify(data);
+
+              $.ajax({
+                     type: "DELETE",
+                     url: clickable,
+                     data: formData,
+                     contentType: 'application/json',
+                     success: function(result) {
+                              alert('Tutorial Deleted');
+                              redirectHome();
+                               },
+                     error: function(result) {alert('error'); redirectHome();}
+                  });
+                }
+              else {  redirectHome(); }
+        }
+
+        function addFirmwareRecord() {
+
+          var form = document.forms.namedItem("FirmwareAddContentForm");
+          var fileForm = new FormData(form);
+
+              jQuery.ajax({ url: "{{ url_for('api.admin_firmware_file_upload_handler') }}",
+                          data: fileForm,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          type: 'POST',
+                         success: function(result) {
+                                 alert('Firmware Added');
+                                 redirectHome();
+                                  },
+                        error: function(result) {alert('error'); redirectHome();
+                      }});
+
+          }
+
+
+
+          function setAndOpenFirmwareModal(id) {
+
+            var clickable = "{{ url_for('api.admin/firmware_admin_one_firmware_info_handler',id=0) }}".slice(0,-1).concat(id);
+            var data = {};
+            var formData = JSON.stringify(data);
+
+            $.ajax({
+                    type: "GET",
+                    url: clickable,
+                    data: formData,
+                    contentType: 'application/json',
+                    dataType: "json",
+                    success: function(result) {
+                      $("#hiddenValueFirmware").val(id);
+                      $("#UpdFirmwareReleasedDatePicker").val(result.ReleasedDate);
+                      $("#UpdFirmwareLink").val(result.FirmwareFileLink);
+                      $("#UpddeviceTypeToken").val(result.CompatibleDevice);
+                      $('#FirmwareModal').modal('show');
+                                },
+                    error: function(result) {alert('error'); redirectHome();}
+                 });
+
+          }
+
+          function updateFirmwareRecord() {
+            confirm("Updating Firmware Record 1");
+            id = $("#hiddenValueFirmware").val();
+
+
+            var clickable = "{{ url_for('api.admin/firmware_admin_one_firmware_info_handler',id=0) }}".slice(0,-1).concat(id);
+
+            var data = {"ReleasedDate": $('#UpdFirmwareReleasedDatePicker').val(),
+                       "FirmwareFileLink": $('#UpdFirmwareLink').val(),
+                       "CompatibleDevice": $('#UpddeviceTypeToken').val().split(",")
+                      };
+            var formData = JSON.stringify(data);
+          alert(formData);
+
+          $.ajax({
+            type: "PUT",
+            url: clickable,
+            data: formData,
+            contentType: 'application/json',
+            success: function(result) {
+               alert('Firmware Updated');
+               redirectHome();
+             },
+            error: function(result) {alert('error'); redirectHome();}
+          });
+          }
+
+          function deleteFirmwareRecord(id) {
+                var c = confirm('Trying to delete Firmware:' + id);
+                if (c == true) {
+                  console.log(id);
+                  var clickable = "{{ url_for('api.admin/firmware_admin_one_firmware_info_handler',id=0) }}".slice(0,-1).concat(id);
+                  console.log(clickable);
+                  var data = {};
+                  var formData = JSON.stringify(data);
+
+                  $.ajax({
+                          type: "DELETE",
+                          url: clickable,
+                          data: formData,
+                          contentType: 'application/json',
+                          success: function(result) {
+                                alert('Firmware Deleted');
+                                redirectHome();
+                                      },
+                          error: function(result) {alert('error'); redirectHome();}
+                       });
+                    }
+                   else { redirectHome(); }
+            }
+
+        function addTipsNewsRecord() {
+              var data = {"ReleasedDate": $('#TipsNewsReleasedDatePicker').val(),
+                          "TipsNewsTitle": $('#TipsNewsTitle').val(),
+                          "TipsNewsDescription": $('#TipsNewsDecription').val(),
+                          "TipsNewsHyperink": $('#TipsNewsContentLink').val(),
+                          "TipsNewsType": $('#TipsNewsType').val()
+                        };
+              var formData = JSON.stringify(data);
+          $.ajax({
+              type: "POST",
+              url: "{{ url_for('api.admin/tipsnews_admin_tips_news_handler') }}",
+              data: formData,
+              contentType: 'application/json',
+              success: function(result) {
+                alert('Tips/News Data Added');
+                      redirectHome();
+                       },
+                error: function(result) {alert('error'); redirectHome();}
+            });
+          }
+
+          function setAndOpenTipsNewsModal(id) {
+            var clickable = "{{ url_for('api.admin/tipsnews_admin_one_tips_news_handler',id=0) }}".slice(0,-1).concat(id);
+            var data = {};
+            var formData = JSON.stringify(data);
+
+            $.ajax({
+                     type: "GET",
+                     url: clickable,
+                     data: formData,
+                     contentType: 'application/json',
+                     dataType: "json",
+                     success: function(result) {
+                       $("#hiddenValueTipsNews").val(id);
+                       $("#UpdTipsNewsReleasedDatePicker").val(result.ReleasedDate);
+                       $("#UpdTipsNewsTitle").val(result.TipsNewsTitle);
+                       $("#UpdTipsNewsDecription").val(result.TipsNewsDescription);
+                       $("#UpdTipsNewsContentLink").val(result.TipsNewsHyperink);
+                       $("#UpdTipsNewsType").val(result.TipsNewsType);
+                       $('#TipsNewsModal').modal('show');
+                              },
+                     error: function(result) {alert('error'); redirectHome();}
+                  });
+
+          }
+
+          function updateTipsNewsRecord() {
+            id = $("#hiddenValueTipsNews").val();
+
+            var clickable = "{{ url_for('api.admin/tipsnews_admin_one_tips_news_handler',id=0) }}".slice(0,-1).concat(id);
+
+            var data = {"ReleasedDate": $('#UpdTipsNewsReleasedDatePicker').val(),
+                        "TipsNewsTitle": $('#UpdTipsNewsTitle').val(),
+                        "TipsNewsDescription": $('#UpdTipsNewsDecription').val(),
+                        "TipsNewsHyperink": $('#UpdTipsNewsContentLink').val(),
+                        "TipsNewsType": $('#UpdTipsNewsType').val()
+                      };
+            var formData = JSON.stringify(data);
+          alert(formData);
+
+          $.ajax({
+            type: "PUT",
+            url: clickable,
+            data: formData,
+            contentType: 'application/json',
+            success: function(result) {
+               alert('Tips/News Updated');
+               redirectHome();
+             },
+            error: function(result) {alert('error'); redirectHome();}
+          });
+          }
+
+
+          function deleteTipsNewsRecord(id) {
+                var c = confirm('Trying to delete Tips/News:' + id);
+                if (c == true) {
+                  console.log(id);
+                  var clickable = "{{ url_for('api.admin/tipsnews_admin_one_tips_news_handler',id=0) }}".slice(0,-1).concat(id);
+                  console.log(clickable);
+                  var data = {};
+                  var formData = JSON.stringify(data);
+
+                  $.ajax({
+                           type: "DELETE",
+                           url: clickable,
+                           data: formData,
+                           contentType: 'application/json',
+                           success: function(result) {
+                                alert('Tips/News Deleted');
+                                redirectHome();
+                                    },
+                           error: function(result) {alert('error'); redirectHome();}
+                        });
+                  }
+                  else { redirectHome(); }
+            }
+  </script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#Logo" onclick="redirectHome()">Virgilant</a>
+    </div>
+
+  </div>
+</nav>
+
+ <div class="panel panel-default">
+
+
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">Legal</a>
+      </h3>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">
+			<div class="container">
+			  <table class="table table-hover table-condensed f11 table-nowrap">
+			    <thead>
+			      <tr>
+			        <th>ID</th>
+			        <th>Legal Text</th>
+              <th>Released Date</th>
+              <th>Action</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			        {% for lt in legalRecords %}
+                <tr>
+                  <td>{{ lt['id'] }}</td>
+                  <td>{{ lt['LegalText'] }}</td>
+                  <td>{{ lt['ReleasedDate'] }}</td>
+               <td><span class="glyphicon glyphicon-minus" onclick="deleteLegalRecord({{ lt['id'] }})" ></span> <span  class="glyphicon glyphicon-pencil" onclick="setAndOpenLegalModal({{ lt['id'] }})" data-id="{{ lt['id'] }}"></span></td>
+               </tr>
+           {% endfor %}
+          </tbody>
+			  </table>
+			</div>
+			<button data-toggle="collapse" data-target="#AddLegalRecord" class="btn btn-primary">Add New Record</button>
+
+				<div name="AddLegalRecord" id="AddLegalRecord" class="collapse">
+					<form name="AddLegalRecordForm" id="AddLegalRecordForm" method="post">
+					  <div class="form-group"  >
+                 <label for="LegalTextReleasedDatePicker">Release Date:</label>
+                 <input class="form-control" id="LegalTextReleasedDatePicker" name="LegalTextReleasedDatePickerName" placeholder="Click to choose Release Data" type="text"/>
+                 <label for="LegalText">Legal Text:</label>
+                 <textarea type="Text" class="form-control" rows="10" name="LegalText" id="LegalText" placeholder="Legal Text" ></textarea>
+
+              </div>
+					  <button id= "AddLegalRecordSubmit" type="submit" class="btn btn-success" onclick="addLegalRecord()">Submit</button>
+					</form>
+				</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a data-toggle="collapse" href="#collapse2">Tutorial</a>
+      </h3>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+			<div class="container">
+			  <table class="table table-hover">
+			    <thead>
+			      <tr>
+			        <th>ID</th>
+			        <th>Title</th>
+			        <th>Description</th>
+			        <th>Media Link</th>
+              <th>Released Date</th>
+			        <th>Action</th>
+			      </tr>
+			    </thead>
+			    <tbody
+            {% for tu in tutorialRecords %}
+              <tr>
+                <td>{{ tu['id'] }}</td>
+                <td>{{ tu['TutorialTitle'] }}</td>
+                <td>{{ tu['TutorialDescription'] }}</td>
+                <td>{{ tu['TutorialeMedialLink'] }}</td>
+                <td>{{ tu['ReleasedDate'] }}</td>
+                <td><span class="glyphicon glyphicon-minus"  onclick="deleteTutorialRecord({{ tu['id'] }})"></span> <span class="glyphicon glyphicon-pencil" onclick="setAndOpenTutorialModal({{ tu['id'] }})"></span></td>
+             </tr>
+         {% endfor %}
+			    </tbody>
+			  </table>
+			</div>
+			<button data-toggle="collapse" data-target="#AddTutorialRecord" class="btn btn-primary">Add New Record</button>
+
+				<div id="AddTutorialRecord" class="collapse">
+          <form enctype="multipart/form-data" method="post" name="TutorialAddContentForm">
+
+					  <div class="form-group" method="post">
+              <label for="TutorialReleasedDatePicker">Released Date:</label>
+              <input class="form-control" id="TutorialReleasedDatePicker" name="TutorialReleasedDatePickerName" placeholder="Click to choose Release Data" type="text"/>
+              <label for="TutorialTitle">Title:</label>
+              <input type="Text" class="form-control" id="TutorialTitle" name="TutorialTitle">
+              <label for="TutorialDescription">Decription:</label>
+					    <textarea type="Text" class="form-control" rows="10" name="TutorialDecriptionName" id="TutorialDescription" placeholder="Type Description" ></textarea>
+             <label for="TutorialeMedialLink">Upload Media:</label>
+             <input id="TutorialeMedialLink" name="TutorialeMedialLink" type="file" class="file">
+
+
+					  </div>
+					  <button type="submit" class="btn btn-success" onclick="addTutorialRecord()">Submit</button>
+         </form>
+				</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a data-toggle="collapse" href="#collapse3">Firmware</a>
+      </h3>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">
+			<div class="container">
+			  <table class="table table-hover">
+			    <thead>
+			      <tr>
+			        <th>ID</th>
+			        <th>Firmware Link</th>
+              <th>Compatible Device</th>
+              <th>Released Date</span></th>
+			        <th>Action</span></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+            {% for fw in firmwareRecords %}
+              <tr>
+                <td>{{ fw['id'] }}</td>
+                <td>{{ fw['FirmwareFileLink'] }}</td>
+                <td>{{ fw['CompatibleDevice']|safe }}</td>
+                <td>{{ fw['ReleasedDate'] }}</td>
+                <td><span class="glyphicon glyphicon-minus" onclick="deleteFirmwareRecord({{ fw['id'] }})"></span> <span class="glyphicon glyphicon-pencil" onclick="setAndOpenFirmwareModal({{ fw['id'] }})"></span></td>
+             </tr>
+         {% endfor %}
+			    </tbody>
+			  </table>
+			</div>
+			<button data-toggle="collapse" data-target="#AddFirmwareRecord" class="btn btn-primary">Add New Record</button>
+
+				<div id="AddFirmwareRecord" class="collapse">
+					<form enctype="multipart/form-data" method="post" name="FirmwareAddContentForm">
+					  <div class="form-group">
+              <label for="FirmwareReleasedDatePicker">Released Date:</label>
+              <input class="form-control" id="FirmwareReleasedDatePicker" name="FirmwareReleasedDatePickerName" placeholder="Click to choose Release Data" type="text"/>
+              <label for="deviceTypeToken">Device Type:</label>
+              <input type="text" class="form-control" id="deviceTypeToken" name='deviceTypeToken' />
+
+             <label for="FirmwareLink">Upload Firmware:</label>
+             <input id="FirmwareLink" name="FirmwareLink" type="file" class="file">
+
+       </div>
+					  <button type="button" class="btn btn-success" onclick="addFirmwareRecord()">Submit</button>
+					</form>
+				</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a data-toggle="collapse" href="#collapse4">Tips/News</a>
+      </h3>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">
+			<div class="container">
+			  <table class="table table-hover">
+			    <thead>
+			      <tr>
+			        <th>ID</th>
+			        <th>Title</th>
+			        <th>Description</th>
+			        <th>Content Link</th>
+			        <th>Type</th>
+              <th>Released Date</span></th>
+			        <th>Action</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+            {% for tn in tipsnewsRecords %}
+              <tr>
+                <td>{{ tn['id'] }}</td>
+                <td>{{ tn['TipsNewsTitle'] }}</td>
+                <td>{{ tn['TipsNewsDescription'] }}</td>
+                <td>{{ tn['TipsNewsHyperink'] }}</td>
+                <td>{{ tn['TipsNewsType'] }}</td>
+                <td>{{ tn['ReleasedDate'] }}</td>
+                <td><span class="glyphicon glyphicon-minus" onclick="deleteTipsNewsRecord({{ tn['id'] }})"></span> <span class="glyphicon glyphicon-pencil" onclick="setAndOpenTipsNewsModal({{ tn['id'] }})"></span></td>
+             </tr>
+         {% endfor %}
+			    </tbody>
+			  </table>
+			</div>
+			<button data-toggle="collapse" data-target="#AddTipsRecord" class="btn btn-primary">Add New Record</button>
+
+				<div id="AddTipsRecord" class="collapse">
+					<form>
+					  <div class="form-group">
+              <label for="TipsNewsReleasedDatePicker">Released Date:</label>
+              <input class="form-control" id="TipsNewsReleasedDatePicker" name="TipsNewsReleasedDatePickerName" placeholder="Click to choose Release Data" type="text"/>
+              <label for="TipsNewsTitle">Title:</label>
+              <input type="Text" class="form-control" id="TipsNewsTitle">
+					    <label for="TipsNewsDecription">Decription:</label>
+              <textarea type="Text" class="form-control" rows="10" name="TipsNewsDecriptionName" id="TipsNewsDecription" placeholder="Type Description" ></textarea>
+             <label for="TipsNewsContentLink">Content Link:</label>
+             <input type="Text" class="form-control" id="TipsNewsContentLink">
+              <label for="TipsNewsType">Type:</label>
+              <input type="Text" class="form-control" id="TipsNewsType">
+					    </div>
+					  <button type="submit" class="btn btn-success" onclick="addTipsNewsRecord()">Submit</button>
+					</form>
+				</div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<!-- Legal Modal -->
+<div id="LegalModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Legal Text</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group"  >
+             <input type="hidden" name="hiddenValueLegal" id="hiddenValueLegal" value="" />
+             <label for="UpdLegalTextReleasedDatePicker">Release Date:</label>
+             <input class="form-control" id="UpdLegalTextReleasedDatePicker" name="LegalTextReleasedDatePickerName" placeholder="Click to choose Release Data" type="text"/>
+             <label for="UpdLegalText">Legal Text:</label>
+             <textarea type="Text" class="form-control" rows="10" name="UpdLegalText" id="UpdLegalText" placeholder="Legal Text" ></textarea>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="updateLegalRecord()">Save changes</button>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Tutorial` Modal -->
+<div id="TutorialModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Tutorial</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group"  >
+             <input type="hidden" name="hiddenValueTutorial" id="hiddenValueTutorial" value="" />
+             <label for="UpdTutorialReleasedDatePicker">Released Date:</label>
+             <input class="form-control" id="UpdTutorialReleasedDatePicker" name="UpdTutorialReleasedDatePicker" placeholder="Click to choose Release Data" type="text"/>
+             <label for="UpdTutorialTitle">Title:</label>
+             <input type="Text" class="form-control" id="UpdTutorialTitle">
+             <label for="UpdTutorialDescription">Decription:</label>
+             <textarea type="Text" class="form-control" rows="10" name="UpdTutorialDescription" id="UpdTutorialDescription" placeholder="Type Description" ></textarea>
+            <label for="UpdTutorialeMedialLink">Upload Media:</label>
+                  <!--  <div class="input-group input-file" name="Fichier1"> -->
+                     <input type="text" id="UpdTutorialeMedialLink" class="form-control" placeholder='Choose a file...' />
+                    <!--      <span class="input-group-btn"> <button class="btn btn-default btn-choose" type="button">Choose</button></span> -->
+                   <!--  </div> -->
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        <button type="button" class="btn btn-primary" onclick="updateTutorialRecord()">Save changes</button>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Firmware Modal -->
+<div id="FirmwareModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Firmware Record</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="hidden" name="hiddenValueFirmware" id="hiddenValueFirmware" value="" />
+          <label for="UpdFirmwareReleasedDatePicker">Released Date:</label>
+          <input class="form-control" id="UpdFirmwareReleasedDatePicker" name="UpdFirmwareReleasedDatePickerName" placeholder="Click to choose Release Data" type="text"/>
+          <label for="UpddeviceTypeToken">Device Type:</label>
+          <input type="text" class="form-control" id="UpddeviceTypeToken" name="UpddeviceTypeToken" />
+          <label for="UpdFirmwareLink">Upload Firmware:</label>
+                <!-- <div class="input-group input-file" name="Fichier1"> -->
+                  <input type="text" id="UpdFirmwareLink" class="form-control" placeholder='Choose a file...' />
+                  <!--    <span class="input-group-btn"> <button class="btn btn-default btn-choose" type="button">Choose</button></span> -->
+                <!-- </div> -->
+
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="updateFirmwareRecord()">Save changes</button>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Tips/News Modal -->
+<div id="TipsNewsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Tips/News</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="hidden" name="hiddenValueTipsNews" id="hiddenValueTipsNews" value="" />
+            <label for="UpdTipsNewsReleasedDatePicker">Released Date:</label>
+              <input class="form-control" id="UpdTipsNewsReleasedDatePicker" name="UpdTipsNewsReleasedDatePickerName" placeholder="Click to choose Release Data" type="text"/>
+            <label for="UpdTipsNewsTitle">Title:</label>
+              <input type="Text" class="form-control" id="UpdTipsNewsTitle">
+            <label for="UpdTipsNewsDecription">Decription:</label>
+              <textarea type="Text" class="form-control" rows="10" name="UpdTipsNewsDecriptionName" id="UpdTipsNewsDecription" placeholder="Type Description" ></textarea>
+            <label for="UpdTipsNewsContentLink">Content Link:</label>
+               <input type="Text" class="form-control" id="UpdTipsNewsContentLink">
+            <label for="UpdTipsNewsType">Type:</label>
+               <input type="Text" class="form-control" id="UpdTipsNewsType">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="updateTipsNewsRecord()">Save changes</button>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="UploadFirmwareModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+
+  </div>
+</div>
+
+</body>
+</html>

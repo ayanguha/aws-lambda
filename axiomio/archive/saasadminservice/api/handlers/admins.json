@@ -1,0 +1,46 @@
+[
+  {
+    "id": 0,
+    "accountId": "1XA401",
+    "accountAdminId": "1ADX001",
+    "accountAdminStatus": "Active",
+    "accountAdminName": "Peter Parker",
+    "accountAdminEmail": "peterparker@marvel.com",
+    "createdOn": "2018-01-14T05:31:52.821Z",
+    "modifiedOn": "2018-01-14T05:31:52.821Z",
+    "deletedOn": "2018-01-14T05:31:52.821Z"
+  },
+  {
+    "id": 1,
+    "accountId": "1XA401",
+    "accountAdminId": "1ADX002",
+    "accountAdminStatus": "Active",
+    "accountAdminName": "greengoblin",
+    "accountAdminEmail": "ggoblin@marvel.com",
+    "createdOn": "2018-01-14T05:31:52.821Z",
+    "modifiedOn": "2018-01-14T05:31:52.821Z",
+    "deletedOn": "2018-01-14T05:31:52.821Z"
+  },
+  {
+    "id": 2,
+    "accountId": "1XA401",
+    "accountAdminId": "1ADX003",
+    "accountAdminStatus": "Active",
+    "accountAdminName": "Harry Osborne",
+    "accountAdminEmail": "harry@marvel.com",
+    "createdOn": "2018-01-14T05:31:52.821Z",
+    "modifiedOn": "2018-01-14T05:31:52.821Z",
+    "deletedOn": "2018-01-14T05:31:52.821Z"
+  },
+  {
+    "id": 4,
+    "accountId": "1XA402",
+    "accountAdminId": "1ADX002",
+    "accountAdminStatus": "Active",
+    "accountAdminName": "greengoblin",
+    "accountAdminEmail": "ggoblin@marvel.com",
+    "createdOn": "2018-01-14T05:31:52.821Z",
+    "modifiedOn": "2018-01-14T05:31:52.821Z",
+    "deletedOn": "2018-01-14T05:31:52.821Z"
+  }
+]

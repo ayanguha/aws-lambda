@@ -1,0 +1,13 @@
+{
+    "ci": {
+        "app_function": "virgilant_content.app.app",
+        "aws_region": null,
+        "profile_name": "backend-ci",
+        "project_name": "virgilant-cloud-content",
+        "runtime": "python2.7",
+        "role_name": "deploymentRole",
+        "manage_roles": false,
+        "aws_environment_variables" : {"S3_KEY": "AKIAJIX3Z7KJYILCDYKA", "S3_SECRET": "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", "S3_BUCKET": "lambda-package-v1"},
+        "s3_bucket": "lambda-package-v1"
+    }
+}
